@@ -2,7 +2,15 @@
 
 <userOverrides>
   <override>
+    <path>C:\git\zstack\Components\hal\target\CC2530EB\hal_lcd.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
     <path>C:\git\zstack\Projects\zstack\Samples\TestRoutine\Source\TestRoutine.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\git\zstack\Projects\zstack\Samples\TestRoutine\usr_api\adc.c</path>
     <encoding>System</encoding>
   </override>
   <override>

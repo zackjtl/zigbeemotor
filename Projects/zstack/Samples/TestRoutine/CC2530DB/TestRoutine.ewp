@@ -3718,12 +3718,6 @@
   </group>
   <group>
     <name>usr_api</name>
-    <file>
-      <name>$PROJ_DIR$\..\usr_api\pwm.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\usr_api\pwm.h</name>
-    </file>
   </group>
   <group>
     <name>ZDO</name>
@@ -3794,6 +3788,12 @@
       <name>$PROJ_DIR$\..\..\..\ZMain\TI2530DB\ZMain.c</name>
     </file>
   </group>
+  <file>
+    <name>$PROJ_DIR$\..\usr_api\pwm.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\usr_api\pwm.h</name>
+  </file>
 </project>
 
 

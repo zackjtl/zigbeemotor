@@ -79,8 +79,9 @@ extern "C"
 #define TestRoutine_LedBlinkTimerEVT      0x0003
 #define TestRoutine_IncreasePWM_EVT       0x0004
 #define TestRoutine_DecreasePWM_EVT       0x0008
+#define TestRoutine_ADCReadTimer          0x0010
 
-
+#define is_data(x, y) (osal_memcmp((char*)x, y, sizeof(y)) == TRUE)
 
 /*********************************************************************
  * MACROS
@@ -90,6 +91,9 @@ extern "C"
  * FUNCTIONS
  */
 
+void motor_init(void);   
+extern void change_motor_speed(uint16 Ref);
+   
 /*
  * Task Initialization for the Generic Application
  */
@@ -99,6 +103,13 @@ extern void TestRoutine_Init( byte task_id );
  * Task Event Processor for the Generic Application
  */
 extern UINT16 TestRoutine_ProcessEvent( byte task_id, UINT16 events );
+   
+  
+uint8* IntToStr(uint8* buf, int m);
+
+/*
+ *
+ */
 
 /*********************************************************************
 *********************************************************************/
