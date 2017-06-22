@@ -6,15 +6,14 @@
 //P0.0
 //P0.1
 
-uint16 gRed;
-uint16 gGreen;
-uint16 gBlue;
+uint16 gFreq;
+
 
 void PWM_init()
 {
 #if 1
-  P0DIR |= BV(4) | BV(5);  // Set P0.4 and P0.5 direction to output
-  P0SEL |= BV(4) | BV(5);  // Select P0.4 and P0.5 to the Peripheral function
+  P0DIR |= BV(3) | BV(4);  // Set P0.4 and P0.5 direction to output
+  P0SEL |= BV(3) | BV(4);  // Select P0.4 and P0.5 to the Peripheral function
   PERCFG &= (~(0x40));       // Set Timer1 pin location to alternative 1
   ////PERCFG |= 0x01;
   P2DIR = 0xC0 | (0x3F & P2DIR);  // Make Timer 1 CH2, 3 have first priority on P0 peripheral function.
@@ -72,20 +71,7 @@ void PWM_init()
 
 void pwmPulse(uint16 PulseFreq)
 {
-  ////uint16 r,g,b;
-  // stop,注意，不能加這句，加了週期偏差十幾倍，具體原因未查明
-  //T1CTL &= BV(0)|BV(1); 
 #if 0
-  r=375;
-  g=1;
-  b=1;
-#else
-  //r=red;
-  //g=green;
-  //b=blue;
-#endif
-  // Set up the timer registers
-#if 1
   T1CC2L = (uint8)PulseFreq;
   T1CC2H = (uint8)(PulseFreq >> 8);
   T1CC3L = (uint8)PulseFreq;
@@ -99,17 +85,13 @@ void pwmPulse(uint16 PulseFreq)
   // Reset timer
   T1CNTL = 0;
   
-
   // Start timer in modulo mode.
-  T1CTL |= 0x02; 
-  
+  T1CTL |= 0x02;   
 }
 
-void setRGB(uint16 red, uint16 green, uint16 blue)
+void setFreq(uint16 Freq)
 {
-  gRed=red;
-  gGreen=green;
-  gBlue=blue;
+  gFreq=Freq;
 }
 
 //#pragma register_bank=2
@@ -118,7 +100,7 @@ __interrupt void pwmISR (void) {
     uint8 flags = T1STAT;
     // T1 ch 0
     if (flags & 0x01){          
-      pwmPulse(gRed);
+      pwmPulse(gFreq);
      
     }
     T1STAT = ~ flags;

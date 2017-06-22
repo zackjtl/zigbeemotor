@@ -11,7 +11,7 @@
 
 
 void PWM_init(void);
-void setRGB(uint16 red, uint16 green, uint16 blue);
+void setFreq(uint16 Freq);
 void pwmPulse(uint16 PulseFreq);
 __interrupt void pwmISR (void);
 #endif
